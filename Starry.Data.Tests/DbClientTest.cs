@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Xunit;
+
+namespace Starry.Data.Tests
+{
+    class DbClientTest
+    {
+        [Fact]
+        public void DbClientNameTest()
+        {
+            var dbName = Guid.NewGuid().ToString();
+            var dbClient = new DbClient(dbName);
+            Assert.Equal(dbName, dbClient.DBName);
+        }
+    }
+}
