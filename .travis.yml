@@ -2,7 +2,7 @@ language: csharp
 solution: Starry.Data.sln
 install:
   - nuget restore Starry.Data.sln
-  - nuget install xunit.runners -Version 2.0.0 -OutputDirectory testrunner
+  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release Starry.Data.sln
-  - mono ./testrunner/xunit.runners.2.0.0/tools/xunit.console.clr4.exe ./Starry.Data.Tests/bin/Release/Starry.Data.Tests.dll
+  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./Starry.Data.Tests/bin/Release/Starry.Data.Tests.dll
