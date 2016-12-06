@@ -1,5 +1,5 @@
 # Starry.Data
-[![Build Status](https://img.shields.io/travis/LuckyStarry/Starry.Data.svg)](https://travis-ci.com/LuckyStarry/Starry.Data)
+[![Build Status](https://travis-ci.org/LuckyStarry/Starry.Data.svg)](https://travis-ci.org/LuckyStarry/Starry.Data)
 
 ## About Starry.Data
 a lightly orm component
