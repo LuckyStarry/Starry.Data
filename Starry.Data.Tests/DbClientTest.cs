@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Starry.Data.Tests
 {
-    class DbClientTest
+    public class DbClientTest
     {
         [Fact]
         public void DbClientNameTest()
