@@ -14,5 +14,15 @@ namespace Starry.Data.Tests
             var dbClient = new DbClient(dbName);
             Assert.Equal(dbName, dbClient.DBName);
         }
+
+        [Fact]
+        public void DbClientInit()
+        {
+            var db = new DbClient(Constants.DBNAME);
+            using (var conn = db.CreateDbConnection())
+            {
+
+            }
+        }
     }
 }
