@@ -18,11 +18,7 @@ namespace Starry.Data.Tests
         [Fact]
         public void DbClientInit()
         {
-            var db = new DbClient(Constants.DBNAME);
-            using (var conn = db.CreateDbConnection())
-            {
-
-            }
+            var db = DbFixed.Instance.GetClient();
         }
     }
 }
