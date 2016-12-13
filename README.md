@@ -2,12 +2,17 @@
 [![Build Status](https://travis-ci.org/LuckyStarry/Starry.Data.svg)](https://travis-ci.org/LuckyStarry/Starry.Data)
 
 ## About Starry.Data
-**Starry.Data** is a lightly database access component, you can write sql command text and execute it with DbClient.
+**Starry.Data** is a lightly database access component, you can use the *Starry.Data.DbClient* for execute SQL commands. It will generate a connection for executing commands and you needn't worry how to dispose it because the connection would be released automatically after use.
 
-Just like this:
+For example, you can query a recordset like this:
 ```
+class Entity
+{
+    //some public properties
+}
+
 var client = new Starry.Data.DbClient("your database's name on web/app.config");
-var result = client.Query<type>(@"
+var result = client.Query<Entity>(@"
     SELECT your column(s)
       FROM your table
 ");
