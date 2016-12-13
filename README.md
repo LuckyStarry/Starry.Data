@@ -1,5 +1,5 @@
 # Starry.Data
-[![Build Status](https://travis-ci.org/LuckyStarry/Starry.Data.svg)](https://travis-ci.org/LuckyStarry/Starry.Data)
+[![Build Status](https://travis-ci.org/LuckyStarry/Starry.Data.svg?branch=master)](https://travis-ci.org/LuckyStarry/Starry.Data)
 
 ## About Starry.Data
 **Starry.Data** is a lightly database access component, you can write sql command text and execute it with DbClient.
