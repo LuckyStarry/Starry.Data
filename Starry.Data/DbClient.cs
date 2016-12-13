@@ -5,6 +5,7 @@ using System.Text;
 #if NET20 || NET30
 using Starry.Data.Extension;
 #endif
+using System.Reflection;
 
 namespace Starry.Data
 {
@@ -65,7 +66,11 @@ namespace Starry.Data
         /// <returns>The number of rows affected.</returns>
         public int ExecuteNonQuery(string sqlText, object param = null)
         {
-            return this.Execute(connection => connection.ExecuteNonQuery(sqlText, param));
+            return this.Execute(connection =>
+            {
+                var command = DbHelper.CreateCommand(connection.KeepConnection(), sqlText, param);
+                return command.ExecuteNonQuery();
+            });
         }
         /// <summary>
         /// Executes the query, and returns the first column of the first row in the resultset returned by the query. Extra columns or rows are ignored.
@@ -76,7 +81,16 @@ namespace Starry.Data
         /// <returns>The first column of the first row in the resultset.</returns>
         public T ExecuteScalar<T>(string sqlText, object param = null)
         {
-            return this.Execute(connection => connection.ExecuteScalar<T>(sqlText, param));
+            return this.Execute(connection =>
+            {
+                var command = DbHelper.CreateCommand(connection.KeepConnection(), sqlText, param);
+                var value = command.ExecuteScalar();
+                if (value == null)
+                {
+                    return default(T);
+                }
+                return (T)Convert.ChangeType(value, typeof(T));
+            });
         }
         /// <summary>
         /// Execute a sql command then get the recordset.
@@ -87,7 +101,40 @@ namespace Starry.Data
         /// <returns>Execute result</returns>
         public IEnumerable<T> Query<T>(string sqlText, object param = null)
         {
-            return this.Execute(connection => connection.Query<T>(sqlText, param));
+            using (var connection = this.CreateDbConnection())
+            {
+                var command = DbHelper.CreateCommand(connection.KeepConnection(), sqlText, param);
+                using (var dataReader = command.ExecuteReader())
+                {
+                    var mappings = new Dictionary<string, PropertyInfo>();
+                    for (var i = 0; i < dataReader.FieldCount; i++)
+                    {
+                        var colName = dataReader.GetName(i);
+                        var property = typeof(T).GetProperty(colName);
+                        if (property != null && property.CanWrite)
+                        {
+                            mappings[colName] = property;
+                        }
+                    }
+                    while (dataReader.Read())
+                    {
+                        var entity = Activator.CreateInstance<T>();
+                        foreach (var mapping in mappings)
+                        {
+                            var value = dataReader[mapping.Key];
+                            if (value == null)
+                            {
+                                mapping.Value.SetValue(entity, value, null);
+                            }
+                            else
+                            {
+                                mapping.Value.SetValue(entity, Convert.ChangeType(value, mapping.Value.PropertyType), null);
+                            }
+                        }
+                        yield return entity;
+                    }
+                }
+            }
         }
     }
 }
