@@ -35,20 +35,6 @@ namespace Starry.Data
             return DbHelper.CreateDbConnection(this.DBName);
         }
         /// <summary>
-        /// Execute a function with connection, then the connection will be close.
-        /// </summary>
-        /// <typeparam name="T">The type of result</typeparam>
-        /// <param name="connection">A connection use for execute a function</param>
-        /// <param name="func">a function executed with a connection</param>
-        /// <returns>Execute result</returns>
-        public static T Execute<T>(IDbConnection connection, Func<IDbConnection, T> func)
-        {
-            using (connection)
-            {
-                return func(connection);
-            }
-        }
-        /// <summary>
         /// Execute a function with a new connection
         /// </summary>
         /// <typeparam name="T">The type of result</typeparam>
@@ -56,7 +42,10 @@ namespace Starry.Data
         /// <returns>Execute result</returns>
         public T Execute<T>(Func<IDbConnection, T> func)
         {
-            return DbClient.Execute<T>(this.CreateDbConnection(), func);
+            using (var connection = this.CreateDbConnection())
+            {
+                return func(connection);
+            }
         }
         /// <summary>
         /// Executes an SQL statement against the Connection object of a .NET Framework data provider, and returns the number of rows affected.
