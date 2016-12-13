@@ -39,7 +39,30 @@ SELECT *
         }
 
         [Fact]
-        public void DbClientInsertTest()
+        public void DbClientExecuteNonQueryTest()
+        {
+            var db = DbFixed.Instance.GetClient();
+            var blogInfo = new Models.BlogInfo();
+            var sqlText = @"
+INSERT INTO
+    BLOGINFO (
+        BITitle,
+        BIContent,
+        BICreateUser)
+    VALUES (
+        @BITitle,
+        @BIContent,
+        @BICreateUser)
+";
+            blogInfo.BITitle = Guid.NewGuid().ToString();
+            blogInfo.BIContent = Guid.NewGuid().ToString();
+            blogInfo.BICreateUser = new Random((int)(DateTime.Now.Ticks % int.MaxValue)).Next(0, 10000);
+            var count = db.ExecuteNonQuery(sqlText, blogInfo);
+            Assert.True(count > 0);
+        }
+
+        [Fact]
+        public void DbClientExecuteScalarTest()
         {
             var db = DbFixed.Instance.GetClient();
             var blogInfo = new Models.BlogInfo();
