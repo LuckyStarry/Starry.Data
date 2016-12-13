@@ -1,5 +1,5 @@
 # Starry.Data
-[![Build Status](https://travis-ci.org/LuckyStarry/Starry.Data.svg)](https://travis-ci.org/LuckyStarry/Starry.Data)
+[![Build Status](https://travis-ci.org/LuckyStarry/Starry.Data.svg?branch=master)](https://travis-ci.org/LuckyStarry/Starry.Data)
 
 ## About Starry.Data
 **Starry.Data** is a lightly database access component, you can use the *Starry.Data.DbClient* for execute SQL commands. It will generate a connection for executing commands and you needn't worry how to dispose it because the connection would be released automatically after use.
