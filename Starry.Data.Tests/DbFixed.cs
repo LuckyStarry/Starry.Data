@@ -51,7 +51,12 @@ CREATE TABLE BLOGINFO (
     BIContent VARCHAR(8000) NOT NULL DEFAULT(''),
     BICreateUser INTEGER NOT NULL DEFAULT(0),
     BICreateTime DATETIME NOT NULL DEFAULT(DATETIME('NOW', 'LOCALTIME'))
-)
+);
+DROP TABLE IF EXISTS DBNULLTABLE;
+CREATE TABLE DBNULLTABLE (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Value INTEGER
+);
 ";
             this.GetClient().ExecuteNonQuery(sqlText);
         }
@@ -68,6 +73,8 @@ INSERT INTO
         'Hello World',
         'This is a test content',
         1)
+;
+INSERT INTO DBNULLTABLE ( ID ) VALUES ( 1 )
 ";
             this.GetClient().ExecuteNonQuery(sqlText);
         }

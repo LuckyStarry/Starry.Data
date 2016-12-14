@@ -20,7 +20,11 @@ namespace Starry.Data
         /// </summary>
         /// <param name="dbName">The database'name</param>
         /// <param name="isRead">The write/read flag, true is read.</param>
-        public DbClientWR(string dbName, bool isRead) : base(dbName) { }
+        public DbClientWR(string dbName, bool isRead)
+            : base(dbName)
+        {
+            this.IsRead = isRead;
+        }
         /// <summary>
         /// Gets the write/read flag, true is read.
         /// </summary>

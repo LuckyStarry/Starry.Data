@@ -111,9 +111,9 @@ namespace Starry.Data
                         foreach (var mapping in mappings)
                         {
                             var value = dataReader[mapping.Key];
-                            if (value == null)
+                            if (value == null || value is DBNull)
                             {
-                                mapping.Value.SetValue(entity, value, null);
+                                mapping.Value.SetValue(entity, null, null);
                             }
                             else
                             {

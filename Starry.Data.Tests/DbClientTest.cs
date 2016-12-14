@@ -39,6 +39,34 @@ SELECT *
         }
 
         [Fact]
+        public void DbClientQueryDbNullTest()
+        {
+            var db = DbFixed.Instance.GetClient();
+            var sqlText = @"
+SELECT *
+  FROM DBNullTable
+ WHERE ID = 1
+";
+            var result = db.Query<Models.DbNullEntity>(sqlText);
+            Assert.True(result != null && result.Any());
+            Assert.Equal(null, result.First().Value);
+        }
+
+        [Fact]
+        public void DbClientQueryDbNullTest_Ex()
+        {
+            var db = DbFixed.Instance.GetClient();
+            var sqlText = @"
+SELECT *
+  FROM DBNullTable
+ WHERE ID = 1
+";
+            var result = db.Query<Models.DbNullEntityEx>(sqlText);
+            Assert.True(result != null && result.Any());
+            Assert.Equal(null, result.First().Value);
+        }
+
+        [Fact]
         public void DbClientExecuteNonQueryTest()
         {
             var db = DbFixed.Instance.GetClient();
@@ -99,6 +127,19 @@ SELECT *
                 Assert.Equal(blogInfo.BIContent, info.BIContent);
                 Assert.Equal(blogInfo.BICreateUser, info.BICreateUser);
             }
+        }
+
+        [Fact]
+        public void DbClientExecuteScalarReturnNullTest()
+        {
+            var db = DbFixed.Instance.GetClient();
+            var sqlText = @"
+SELECT BIID
+  FROM BlogInfo
+ WHERE BIID < 0
+";
+            var result = db.ExecuteScalar<int>(sqlText);
+            Assert.Equal(0, result);
         }
 
         [Fact]
