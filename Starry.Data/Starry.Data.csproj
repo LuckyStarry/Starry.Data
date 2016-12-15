@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DbClient.cs" />
     <Compile Include="DbClientExecuteDelegate.cs" />
+    <Compile Include="DbColumnMapping.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="IDbClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -98,33 +98,11 @@ namespace Starry.Data
                 var command = DbHelper.CreateCommand(connection, sqlText, param);
                 using (var dataReader = command.ExecuteReader())
                 {
-                    var mappings = new Dictionary<string, PropertyInfo>();
-                    for (var i = 0; i < dataReader.FieldCount; i++)
-                    {
-                        var colName = dataReader.GetName(i);
-                        var property = typeof(T).GetProperty(colName);
-                        if (property != null && property.CanWrite)
-                        {
-                            mappings[colName] = property;
-                        }
-                    }
+                    var schemaTable = dataReader.GetSchemaTable();
+                    var mappings = new DbColumnMapping<T>(schemaTable);
                     while (dataReader.Read())
                     {
-                        var entity = Activator.CreateInstance<T>();
-                        foreach (var mapping in mappings)
-                        {
-                            var value = dataReader[mapping.Key];
-                            if (value == null || value is DBNull)
-                            {
-                                mapping.Value.SetValue(entity, null, null);
-                            }
-                            else
-                            {
-                                var underlyingType = Nullable.GetUnderlyingType(mapping.Value.PropertyType);
-                                mapping.Value.SetValue(entity, Convert.ChangeType(value, underlyingType ?? mapping.Value.PropertyType), null);
-                            }
-                        }
-                        yield return entity;
+                        yield return mappings.GetValue(dataReader);
                     }
                 }
             }
