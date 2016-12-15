@@ -8,6 +8,8 @@ namespace Starry.Data
 {
     class DbColumnMapping<T>
     {
+        private const BindingFlags property_binging_flags = BindingFlags.Public | BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.GetProperty;
+
         public DbColumnMapping(DataTable schemaTable)
         {
             this.mappings = new Dictionary<string, PropertyInfo>();
@@ -15,7 +17,7 @@ namespace Starry.Data
             {
                 var columnName = row[0].ToString(); //ColumnName
                 var property = typeof(T).GetProperty(columnName) ??
-                    typeof(T).GetProperty(columnName, BindingFlags.Public | BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.GetProperty);
+                    typeof(T).GetProperty(columnName, property_binging_flags);
                 if (property != null && property.CanWrite)
                 {
                     this.mappings[columnName] = property;

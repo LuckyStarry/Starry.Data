@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
-#if NET20 || NET30
-using Starry.Data.Extension;
-#endif
 
 namespace Starry.Data
 {

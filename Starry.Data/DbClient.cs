@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
-#if NET20 || NET30
-using Starry.Data.Extension;
-#endif
 using System.Reflection;
 
 namespace Starry.Data
@@ -98,8 +95,7 @@ namespace Starry.Data
                 var command = DbHelper.CreateCommand(connection, sqlText, param);
                 using (var dataReader = command.ExecuteReader())
                 {
-                    var schemaTable = dataReader.GetSchemaTable();
-                    var mappings = new DbColumnMapping<T>(schemaTable);
+                    var mappings = new DbColumnMapping<T>(dataReader.GetSchemaTable());
                     while (dataReader.Read())
                     {
                         yield return mappings.GetValue(dataReader);
