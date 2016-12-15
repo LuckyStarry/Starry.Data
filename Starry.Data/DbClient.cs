@@ -40,7 +40,7 @@ namespace Starry.Data
         /// <typeparam name="T">The type of result</typeparam>
         /// <param name="func">a function executed with a connection</param>
         /// <returns>Execute result</returns>
-        public T Execute<T>(Func<IDbConnection, T> func)
+        public T Execute<T>(DbClientExecuteDelegate<T> func)
         {
             using (var connection = this.CreateDbConnection())
             {

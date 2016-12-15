@@ -28,7 +28,7 @@ namespace Starry.Data
         /// <typeparam name="T">The type of result</typeparam>
         /// <param name="func">a function executed with a connection</param>
         /// <returns>Execute result</returns>
-        T Execute<T>(Func<IDbConnection, T> func);
+        T Execute<T>(DbClientExecuteDelegate<T> func);
         /// <summary>
         /// Executes an SQL statement against the Connection object of a .NET Framework data provider, and returns the number of rows affected.
         /// </summary>

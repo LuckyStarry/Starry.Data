@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Starry.Data</RootNamespace>
     <AssemblyName>Starry.Data</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbClient.cs" />
+    <Compile Include="DbClientExecuteDelegate.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="IDbClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
