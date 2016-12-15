@@ -117,7 +117,8 @@ namespace Starry.Data
                             }
                             else
                             {
-                                mapping.Value.SetValue(entity, Convert.ChangeType(value, mapping.Value.PropertyType), null);
+                                var underlyingType = Nullable.GetUnderlyingType(mapping.Value.PropertyType);
+                                mapping.Value.SetValue(entity, Convert.ChangeType(value, underlyingType ?? mapping.Value.PropertyType), null);
                             }
                         }
                         yield return entity;

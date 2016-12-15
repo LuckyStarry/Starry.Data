@@ -53,7 +53,7 @@ SELECT *
         }
 
         [Fact]
-        public void DbClientQueryDbNullTest_Ex()
+        public void DbClientQueryDbNullTest_I()
         {
             var db = DbFixed.Instance.GetClient();
             var sqlText = @"
@@ -64,6 +64,21 @@ SELECT *
             var result = db.Query<Models.DbNullEntityEx>(sqlText);
             Assert.True(result != null && result.Any());
             Assert.Equal(null, result.First().Value);
+        }
+
+        [Fact]
+        public void DbClientQueryDbNullTest_II()
+        {
+            var db = DbFixed.Instance.GetClient();
+            var value = new Random().Next();
+            var sqlText = string.Format(@"
+SELECT ID, {0} AS Value
+  FROM DBNullTable
+ WHERE ID = 1
+", value);
+            var result = db.Query<Models.DbNullEntityEx>(sqlText);
+            Assert.True(result != null && result.Any());
+            Assert.Equal(value, result.First().Value);
         }
 
         [Fact]
