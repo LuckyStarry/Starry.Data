@@ -57,7 +57,8 @@ namespace Starry.Data
         {
             return this.Execute(connection =>
             {
-                var command = DbHelper.CreateCommand(connection.KeepConnection(), sqlText, param);
+                DbHelper.KeepConnection(connection);
+                var command = DbHelper.CreateCommand(connection, sqlText, param);
                 return command.ExecuteNonQuery();
             });
         }
@@ -72,7 +73,8 @@ namespace Starry.Data
         {
             return this.Execute(connection =>
             {
-                var command = DbHelper.CreateCommand(connection.KeepConnection(), sqlText, param);
+                DbHelper.KeepConnection(connection);
+                var command = DbHelper.CreateCommand(connection, sqlText, param);
                 var value = command.ExecuteScalar();
                 if (value == null)
                 {
@@ -92,7 +94,8 @@ namespace Starry.Data
         {
             using (var connection = this.CreateDbConnection())
             {
-                var command = DbHelper.CreateCommand(connection.KeepConnection(), sqlText, param);
+                DbHelper.KeepConnection(connection);
+                var command = DbHelper.CreateCommand(connection, sqlText, param);
                 using (var dataReader = command.ExecuteReader())
                 {
                     var mappings = new Dictionary<string, PropertyInfo>();

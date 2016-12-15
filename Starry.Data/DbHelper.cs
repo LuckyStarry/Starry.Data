@@ -9,7 +9,14 @@ namespace Starry.Data
 {
     abstract class DbHelper
     {
-        private DbHelper() { }
+        public static IDbConnection KeepConnection(IDbConnection connection)
+        {
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            return connection;
+        }
 
         public static IDbConnection CreateDbConnection(string dbName)
         {

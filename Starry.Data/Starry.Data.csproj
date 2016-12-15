@@ -41,12 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbClient.cs" />
-    <Compile Include="DbClientAdvanced.cs" />
-    <Compile Include="DbClientWR.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="IDbClient.cs" />
-    <Compile Include="IDbClientQueryPageable.cs" />
-    <Compile Include="IDbConnection.Extension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

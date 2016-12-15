@@ -39,6 +39,18 @@ SELECT *
         }
 
         [Fact]
+        public void DbClientQueryToListTest()
+        {
+            var db = DbFixed.Instance.GetClient();
+            var sqlText = @"
+SELECT *
+  FROM BLOGINFO
+";
+            var result = db.Query<Models.BlogInfo>(sqlText);
+            Assert.True(result != null && result.Any() && result.ToList().Any());
+        }
+
+        [Fact]
         public void DbClientQueryDbNullTest()
         {
             var db = DbFixed.Instance.GetClient();
