@@ -63,9 +63,11 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="DbClient.Query.Test.cs" />
+    <Compile Include="DbBridge.Test.cs" />
     <Compile Include="DbClient.Test.cs" />
     <Compile Include="DbFixed.cs" />
     <Compile Include="DbHelperTest.cs" />
+    <Compile Include="Mock\DbColumnMappingFactory.cs" />
     <Compile Include="Models\BlogInfo.cs" />
     <Compile Include="Models\DbNullEntityEx.cs" />
     <Compile Include="Models\DbNullEntity.cs" />

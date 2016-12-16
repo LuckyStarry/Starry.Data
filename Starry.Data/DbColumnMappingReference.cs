@@ -37,8 +37,11 @@ namespace Starry.Data
             {
                 //first column of schema is ColumnName
                 var columnName = row[0].ToString();
-                var property = typeof(T).GetProperty(columnName) ??
-                    typeof(T).GetProperty(columnName, PROPERTY_BINGING_FLAGS);
+                var property = typeof(T).GetProperty(columnName);
+                if (property == null)
+                {
+                    property = typeof(T).GetProperty(columnName, PROPERTY_BINGING_FLAGS);
+                }
                 if (property != null && property.CanWrite)
                 {
                     this.mappings[columnName] = property;
