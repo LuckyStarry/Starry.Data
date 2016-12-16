@@ -5,7 +5,7 @@ using System.Text;
 namespace Starry.Data
 {
     /// <summary>
-    /// DbBridge is able to provide some features for database operation.
+    /// DbBridge is a object which used to bridge Starry.Data's features.
     /// </summary>
     public sealed partial class DbBridge : IDbBridge
     {
@@ -23,7 +23,7 @@ namespace Starry.Data
             get { return this.mappingFactory; }
         }
         /// <summary>
-        /// Gets the factory object used for make column mapping
+        /// Gets and sets the factory used to generate <see cref="Starry.Data.IDbColumnMapping"/>
         /// </summary>
         public static IDbColumnMappingFactory MappingFactory
         {

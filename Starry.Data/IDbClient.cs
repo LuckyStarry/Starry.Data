@@ -6,7 +6,7 @@ using System.Text;
 namespace Starry.Data
 {
     /// <summary>
-    /// Represents a DbClient is able to execute sql commands and manage connections.
+    /// Represents a object is able to execute sql commands and manage connections.
     /// </summary>
     public interface IDbClient
     {
