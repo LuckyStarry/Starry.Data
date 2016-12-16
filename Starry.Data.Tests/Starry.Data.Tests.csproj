@@ -62,7 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="DbClientTest.cs" />
+    <Compile Include="DbClient.Query.Test.cs" />
+    <Compile Include="DbClient.Test.cs" />
     <Compile Include="DbFixed.cs" />
     <Compile Include="DbHelperTest.cs" />
     <Compile Include="Models\BlogInfo.cs" />

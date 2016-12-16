@@ -95,10 +95,10 @@ namespace Starry.Data
                 var command = DbHelper.CreateCommand(connection, sqlText, param);
                 using (var dataReader = command.ExecuteReader())
                 {
-                    var mappings = new DbColumnMapping<T>(dataReader.GetSchemaTable());
+                    var mappings = DbBridge.MappingFactory.GetDbColumnMapping(typeof(T), dataReader);
                     while (dataReader.Read())
                     {
-                        yield return mappings.GetValue(dataReader);
+                        yield return (T)mappings.GetValue(dataReader);
                     }
                 }
             }

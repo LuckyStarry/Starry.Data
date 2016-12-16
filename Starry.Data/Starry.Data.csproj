@@ -40,11 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbBridge.Instance.cs" />
     <Compile Include="DbClient.cs" />
     <Compile Include="DbClientExecuteDelegate.cs" />
+    <Compile Include="DbColumnMappingFactory.cs" />
     <Compile Include="DbColumnMapping.cs" />
+    <Compile Include="DbColumnMappingStruct.cs" />
+    <Compile Include="DbColumnMappingReference.cs" />
     <Compile Include="DbHelper.cs" />
+    <Compile Include="DbBridge.cs" />
+    <Compile Include="IDbBridge.cs" />
     <Compile Include="IDbClient.cs" />
+    <Compile Include="IDbColumnMapping.cs" />
+    <Compile Include="IDbColumnMappingFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
