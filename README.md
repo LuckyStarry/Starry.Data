@@ -7,9 +7,8 @@
 ## How to use
 #### Get Started Fast
 
-If you have a table ***BlogInfo*** in database ***sampledb*** like this:
+If you have a table ***BlogInfo*** in database ***blogdb*** like this:
 
-###### BlogInfo
 | ID | Title | Content | CreateUser | CreateTime |
 | :-: | :-: | :-: | :-: | :-: |
 | 1 | Hello World | This is a test content | 1 | 2016-12-16 |
@@ -26,7 +25,7 @@ class BlogInfo
     public DateTime CreateTime { set; get; }
 }
 
-var client = new Starry.Data.DbClient("sampledb");
+var client = new Starry.Data.DbClient("blogdb");
 var result = client.Query<BlogInfo>(@"
     SELECT *
       FROM BlogInfo
