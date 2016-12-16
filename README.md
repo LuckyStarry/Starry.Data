@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/LuckyStarry/Starry.Data.svg)](https://travis-ci.org/LuckyStarry/Starry.Data)
 
 ## About Starry.Data
-***Starry.Data*** is a lightly database access library, you can use the ***Starry.Data.DbClient*** for execute SQL commands. It will generate a connection for executing commands and you needn't worry how to dispose it because the connection would be released automatically after use.
+***Starry.Data*** is a lightly weight database access library, you can use the ***Starry.Data.DbClient*** for execute SQL commands. It will generate a connection for executing commands and you needn't worry how to dispose it because the connection would be released automatically after use.
 
 For example:
 
